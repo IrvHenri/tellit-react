@@ -5,7 +5,7 @@ export default function Tabs() {
   return (
     <div className="home-tabs">
       <Link to="/">Home</Link>
-      <Link to="/stories"> My stories</Link>
+      <Link to="/user"> My stories</Link>
     </div>
   );
 }

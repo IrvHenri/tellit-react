@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function StoryFeed() {
-  return <div className="journal">Story Feed</div>;
+export default function StoryFeed({ stories }) {
+  return <div className="journal">{stories ? stories : <p>Story Feed</p>}</div>;
 }
