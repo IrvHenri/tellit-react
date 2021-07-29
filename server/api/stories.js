@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // GET homepage
-router.get("/", (req, res) => {});
+// router.get("/", (req, res) => {});
 
 //Route for Getting both the story, and it's associated contributions
 router.get("/:storyId", (req, res) => {});

@@ -7,14 +7,14 @@ const StoriesApi = require("./stories");
 const ContributionsApi = require("./contributions");
 const router = express.Router();
 
-router.use(registerApi);
-router.use(loginApi);
-router.use(UsersApi);
-router.use(StoriesApi);
-router.use(ContributionsApi);
+// router.use(registerApi);
+// router.use(loginApi);
+router.use("/users", UsersApi);
+router.use("/stories", StoriesApi);
+router.use("/contributions", ContributionsApi);
 
 router.get("/", function (req, res, next) {
-  res.json({ message: "Testing" });
+  res.json({ stories: "Testing" });
 });
 
 module.exports = router;
