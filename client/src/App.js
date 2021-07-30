@@ -4,7 +4,9 @@ import StoryFeed from "./components/StoryFeed";
 import UserFeed from "./components/UserFeed";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import useStories from "./hooks/useStories";
 function App() {
+  const [stories] = useStories();
   return (
     <div className="App">
       <Router>
