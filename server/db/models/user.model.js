@@ -50,17 +50,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       updatedAt: false,
-      hooks: {
-        beforeCreate: async (user) => {
-          const salt = await bcrypt.genSaltSync();
-          user.password = await bcrypt.hashSync(user.password, salt);
-        },
-      },
-      instanceMethods: {
-        validPassword: async function (password) {
-          return await bcrypt.compareSync(password, this.password);
-        },
-      },
     }
   );
 
