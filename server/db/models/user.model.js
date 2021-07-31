@@ -1,3 +1,5 @@
+const bcrypt = require("bcrypt");
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "user",
@@ -26,11 +28,39 @@ module.exports = (sequelize, DataTypes) => {
           isEmail: true,
           notEmpty: true,
         },
+        password: {
+          allowNull: false,
+          type: DataTypes.STRING,
+          validate: {
+            validatePassword: function (password) {
+              if (
+                !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/.test(
+                  password
+                )
+              ) {
+                throw new Error(
+                  "The password must contain at least 10 and maximum 12 characters including at least 1 uppercase, 1 lowercase, one number and one special character."
+                );
+              }
+            },
+          },
+        },
         // Figure out Hashed Password attribute
       },
     },
     {
       updatedAt: false,
+      hooks: {
+        beforeCreate: async (user) => {
+          const salt = await bcrypt.genSaltSync();
+          user.password = await bcrypt.hashSync(user.password, salt);
+        },
+      },
+      instanceMethods: {
+        validPassword: async function (password) {
+          return await bcrypt.compareSync(password, this.password);
+        },
+      },
     }
   );
 
