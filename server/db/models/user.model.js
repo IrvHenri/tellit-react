@@ -28,31 +28,39 @@ module.exports = (sequelize, DataTypes) => {
           isEmail: true,
           notEmpty: true,
         },
-        password: {
-          allowNull: false,
-          type: DataTypes.STRING,
-          validate: {
-            validatePassword: function (password) {
-              if (
-                !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/.test(
-                  password
-                )
-              ) {
-                throw new Error(
-                  "The password must contain at least 10 and maximum 12 characters including at least 1 uppercase, 1 lowercase, one number and one special character."
-                );
-              }
-            },
-          },
-        },
-        // Figure out Hashed Password attribute
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     {
       updatedAt: false,
+      hooks: {
+        beforeCreate: async (user) => {
+          if (user.password) {
+            const salt = await bcrypt.genSaltSync(10, "a");
+            user.password = bcrypt.hashSync(user.password, salt);
+          }
+        },
+        beforeUpdate: async (user) => {
+          if (user.password) {
+            const salt = await bcrypt.genSaltSync(10, "a");
+            user.password = bcrypt.hashSync(user.password, salt);
+          }
+        },
+      },
+      instanceMethods: {
+        validPassword: (password) => {
+          return bcrypt.compareSync(password, this.password);
+        },
+      },
     }
   );
 
+  User.prototype.validPassword = async (password, hash) => {
+    return await bcrypt.compareSync(password, hash);
+  };
   return User;
 };
 

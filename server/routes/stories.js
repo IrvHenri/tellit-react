@@ -1,7 +1,7 @@
 module.exports = (app) => {
   const express = require("express");
   const router = express.Router();
-
+  const stories = require("../db/controllers/story.controller");
   // GET homepage
   router.get("/", (req, res) => {});
 
@@ -12,7 +12,7 @@ module.exports = (app) => {
   router.get("/:story_id/acceptedContributions", (req, res) => {});
 
   //Submit New Story
-  router.post("/", (req, res) => {});
+  router.post("/", stories.create);
 
   // Form that submits contribution
   router.post("/:story_id/contribution", (req, res) => {});

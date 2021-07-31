@@ -7,19 +7,6 @@ exports.create = (req, res) => {
   // Validate request
 
   const { username, email, password, avatar } = req.body;
-  // if (!username) {
-  //   res.status(400).send({
-  //     message: "username can not be empty!",
-  //   });
-  //   return;
-  // }
-
-  // if (!email) {
-  //   res.status(400).send({
-  //     message: "email can not be empty!",
-  //   });
-  //   return;
-  // }
   if (
     !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/.test(
       password
@@ -36,13 +23,14 @@ exports.create = (req, res) => {
   const user = {
     username: username,
     email: email,
-    password: password,
+    password: password ? password : null,
     avatar: avatar ? avatar : null,
   };
 
   // // Save Tutorial in the database
   User.create(user)
     .then((data) => {
+      console.log("CreatedUser:", data);
       res.send(data);
     })
     .catch((err) => {
@@ -50,4 +38,43 @@ exports.create = (req, res) => {
         message: err.message || "Some error occurred while creating the User.",
       });
     });
+};
+
+exports.findOne = async (req, res) => {
+  const { username, password } = req.body;
+  console.log(password, username);
+
+  try {
+    User.findOne({
+      where: {
+        username: username,
+      },
+    }).then(async (response) => {
+      console.log("DB DATAVALUES:", response.dataValues);
+      if (!response) {
+        res.send("No user found");
+      } else {
+        if (
+          !response.dataValues.password ||
+          !(await response.validPassword(
+            password,
+            response.dataValues.password
+          ))
+        ) {
+          res.send("password incorrect");
+        } else {
+          res.send("logged in");
+        }
+      }
+    });
+  } catch (error) {
+    const response = {
+      status: 500,
+      data: {},
+      error: {
+        message: "user match failed",
+      },
+    };
+    res.json(response);
+  }
 };
