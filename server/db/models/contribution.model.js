@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       is_accepted: {
         type: DataTypes.STRING,
-        defaultValue: "Not reviewed",
+        defaultValue: "not reviewed",
       },
       accepted_at: {
         type: DataTypes.DATE,
