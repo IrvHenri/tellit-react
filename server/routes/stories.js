@@ -10,7 +10,10 @@ module.exports = (app) => {
   router.get("/:storyId", stories.findOne);
 
   //Gets all accepted contributions for story, and ordered by createdAt
-  router.get("/:story_id/acceptedContributions", (req, res) => {});
+  router.get(
+    "/:story_id/acceptedContributions",
+    stories.findAcceptedContributions
+  );
 
   //Submit New Story
   router.post("/", stories.createStory);
@@ -19,7 +22,7 @@ module.exports = (app) => {
   router.post("/:story_id/contribution", stories.createContribution);
 
   // User marks story complete
-  router.post("/:story_id", (req, res) => {});
+  router.post("/:story_id", stories.markStoryComplete);
 
   app.use("/api/stories", router);
 };

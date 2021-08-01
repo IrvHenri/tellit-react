@@ -84,6 +84,20 @@ exports.createStory = (req, res) => {
     });
 };
 
+exports.markStoryComplete = (req, res) => {
+  const { userId, storyId } = req.body;
+  const newData = {
+    is_complete: true,
+  };
+
+  Story.update(newData, { where: { id: storyId, userId: userId } })
+    .then((updatedStory) => {
+      console.log(updatedStory);
+      return res.json({ message: "Story is complete!" });
+    })
+    .catch((err) => res.json({ Error: "Oops! Something went wrong!" }));
+};
+
 exports.createContribution = (req, res) => {
   const { content, storyId, userId } = req.body;
 
@@ -105,4 +119,16 @@ exports.createContribution = (req, res) => {
           err.message || "Some error occurred while creating the Contribution.",
       });
     });
+};
+
+exports.findAcceptedContributions = async (req, res) => {
+  const id = req.params.storyId;
+  try {
+    const contributionData = await Contribution.findAll({
+      where: { storyId: id, is_accepted: { [Op.like]: "accepted" } },
+    });
+    return res.json({ acceptedContributions: contributionData });
+  } catch (err) {
+    return res.json({ Error: err });
+  }
 };
