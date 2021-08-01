@@ -2,7 +2,7 @@ const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Tutorial
+// Create and Save a new User
 exports.create = (req, res) => {
   // Validate request
 
@@ -27,7 +27,7 @@ exports.create = (req, res) => {
     avatar: avatar ? avatar : null,
   };
 
-  // // Save Tutorial in the database
+  // // Save User in the database
   User.create(user)
     .then((data) => {
       console.log("CreatedUser:", data);
@@ -40,6 +40,7 @@ exports.create = (req, res) => {
     });
 };
 
+//Find a User for login
 exports.findOne = async (req, res) => {
   const { username, password } = req.body;
   console.log(password, username);
@@ -50,7 +51,6 @@ exports.findOne = async (req, res) => {
         username: username,
       },
     }).then(async (response) => {
-      console.log("DB DATAVALUES:", response.dataValues);
       if (!response) {
         res.send("No user found");
       } else {

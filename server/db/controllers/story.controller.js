@@ -3,8 +3,8 @@ const Story = db.stories;
 const User = db.users;
 const Contribution = db.contributions;
 const Op = db.Sequelize.Op;
-//Get all Stories
 
+//Get all Stories
 exports.findAll = (req, res) => {
   Story.findAll({
     include: [
@@ -19,7 +19,7 @@ exports.findAll = (req, res) => {
   });
 };
 
-//
+// Find Single Story
 exports.findOne = async (req, res) => {
   const id = req.params.storyId;
   const StoryData = await Story.findOne({
@@ -42,6 +42,23 @@ exports.findOne = async (req, res) => {
     ],
   });
   return res.json({ story: StoryData, contributions: contributionData });
+};
+
+// Get All Users stories
+exports.findUserStories = (req, res) => {
+  const { id } = req.params;
+  Story.findAll({
+    where: { userId: id },
+    include: [
+      {
+        model: User,
+        attributes: ["avatar", "username"],
+      },
+    ],
+  }).then((stories) => {
+    console.log(`Found ${stories.length} stories.`);
+    res.json({ stories });
+  });
 };
 
 // Create and Save a new Story
