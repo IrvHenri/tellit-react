@@ -30,7 +30,6 @@ exports.create = (req, res) => {
   // // Save User in the database
   User.create(user)
     .then((data) => {
-      console.log("CreatedUser:", data);
       res.send(data);
     })
     .catch((err) => {

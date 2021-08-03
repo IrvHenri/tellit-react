@@ -1,21 +1,17 @@
 module.exports = (app) => {
   const express = require("express");
   const router = express.Router();
+  const contributions = require("../db/controllers/contribution.controller");
 
-  router.get("/", (req, res) => {});
+  // I don't think I need this route
+  // router.get("/", (req, res) => {});
 
-  router.get("/:contribution_id/upvotes", (req, res) => {});
+  router.get("/:contribution_id/upvotes", contributions.countUpvotes);
 
   //Author Accepts Contribution
-  router.post("/:contribution_id", (req, res) => {
-    //Find Author ID
-    //Check if contribution's status is not_reviewed
-  });
+  router.post("/:contribution_id", contributions.accept);
 
   //Upvote Contribution
-  router.post("/:contribution_id/upvote", (req, res) => {
-    //Check if the user upvoting has already upvoted this post
-    //If data is undefined, then no upvote exists. Go ahead and add one.
-  });
+  router.post("/:contribution_id/upvote", contributions.upvote);
   app.use("/api/contributions", router);
 };
