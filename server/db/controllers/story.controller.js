@@ -7,6 +7,7 @@ const Op = db.Sequelize.Op;
 //Get all Stories
 exports.findAll = (req, res) => {
   Story.findAll({
+    order: [["id", "DESC"]],
     include: [
       {
         model: User,
@@ -33,6 +34,7 @@ exports.findOne = async (req, res) => {
   });
 
   const contributionData = await Contribution.findAll({
+    order: [["id", "DESC"]],
     where: { storyId: id, is_accepted: { [Op.like]: "not reviewed" } },
     include: [
       {
@@ -111,11 +113,11 @@ exports.createContribution = (req, res) => {
   // // Save Contribution in the database
   Contribution.create(contribution)
     .then((data) => {
-      res.send(data);
+      res.json({ contribution: data });
     })
     .catch((err) => {
-      res.status(500).send({
-        message:
+      res.status(500).json({
+        Error:
           err.message || "Some error occurred while creating the Contribution.",
       });
     });

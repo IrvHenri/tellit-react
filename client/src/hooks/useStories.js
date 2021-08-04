@@ -6,10 +6,11 @@ export default function useStories() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/v1")
+      .get("http://localhost:8000/api/stories")
       .then((result) => {
-        console.log(result.data.stories);
-        setStories(result.data.stories);
+        
+        const {stories} = result.data
+        setStories(prev => [...prev, ...stories]);
         setLoading(false);
       })
       .catch((err) => console.log("Error", err));

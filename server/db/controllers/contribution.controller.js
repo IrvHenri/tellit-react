@@ -17,11 +17,12 @@ exports.countUpvotes = async (req, res) => {
 };
 
 exports.upvote = async (req, res) => {
-  const { user_id } = req.body;
+  const { userId } = req.body;
+  console.log("USER ID-------------->", userId);
   const { contribution_id } = req.params;
   try {
     let checkExistingVote = await Upvote.findOne({
-      where: { userId: user_id, contributionId: contribution_id },
+      where: { userId: userId, contributionId: contribution_id },
     });
     if (checkExistingVote) {
       return res
@@ -29,7 +30,7 @@ exports.upvote = async (req, res) => {
         .json({ error: "User has already up-voted this contribution!" });
     } else {
       const upvote = {
-        userId: user_id,
+        userId: userId,
         contributionId: contribution_id,
       };
       try {

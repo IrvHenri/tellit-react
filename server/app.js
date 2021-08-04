@@ -18,6 +18,10 @@ const db = require("./db/models");
 db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
 });
+
+// db.sequelize.sync().then(() => {
+//   console.log("Drop and re-sync db.");
+// });
 app.get("/", (req, res) => {
   res.json({
     message: "🦄🌈✨👋🌎🌍🌏✨🌈🦄",
