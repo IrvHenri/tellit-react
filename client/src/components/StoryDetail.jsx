@@ -21,9 +21,11 @@ export default function StoryDetail() {
         <div className="story-detail-page">
           {" "}
           <StoryArticle {...story} />{" "}
-          <ContributionForm storyId={id} userId={userId} />{" "}
-          <div className="contribution-container">
-            {contributionList ? contributionList : null}
+          <div className="story-detail-sidebar">
+            <ContributionForm storyId={id} userId={userId} />{" "}
+            <div className="contribution-container">
+              {contributionList ? contributionList : null}
+            </div>
           </div>
         </div>
       )}

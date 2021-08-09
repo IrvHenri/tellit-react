@@ -49,6 +49,7 @@ exports.findOne = async (req, res) => {
 // Get All Users stories
 exports.findUserStories = (req, res) => {
   const { id } = req.params;
+
   Story.findAll({
     where: { userId: id },
     include: [
@@ -61,6 +62,20 @@ exports.findUserStories = (req, res) => {
     console.log(`Found ${stories.length} stories.`);
     res.json({ stories });
   });
+  // const { id } = req.userId;
+
+  // Story.findAll({
+  //   where: { userId: id },
+  //   include: [
+  //     {
+  //       model: User,
+  //       attributes: ["avatar", "username"],
+  //     },
+  //   ],
+  // }).then((stories) => {
+  //   console.log(`Found ${stories.length} stories.`);
+  //   res.json({ stories });
+  // });
 };
 
 // Create and Save a new Story

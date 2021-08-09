@@ -31,17 +31,19 @@ export default function ContributionForm({ storyId, userId }) {
       });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      {error && <p>{error}</p>}
-      <h2>Submit A Contribution!</h2>
-      <textarea
-        type="text"
-        name="text"
-        value={content}
-        onChange={handleChange}
-        placeholder="What happens next?"
-      />
-      <Button text="Submit" />
-    </form>
+    <div className="contribution-widget">
+      <form onSubmit={handleSubmit}>
+        {error && <p>{error}</p>}
+        <h2>Submit A Contribution!</h2>
+        <textarea
+          type="text"
+          name="text"
+          value={content}
+          onChange={handleChange}
+          placeholder="What happens next?"
+        />
+        <Button text="Submit" />
+      </form>
+    </div>
   );
 }

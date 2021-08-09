@@ -9,7 +9,7 @@ export default function StoryArticle(props) {
     user: { avatar, username },
     is_complete,
   } = props;
-  console.log(avatar);
+
   return (
     <article className="story-article">
       <header>
@@ -19,11 +19,13 @@ export default function StoryArticle(props) {
           <p>{username}</p>
         </div>{" "}
       </header>
-      <p>{initial_Content}</p>
+      <p className="story-content">{initial_Content}</p>
       <footer>
         {" "}
         {is_complete ? <span>Complete</span> : <span>In Progress</span>}{" "}
-        <Link to={`/stories/${id}`}>View Story</Link>
+        <button>
+          <Link to={`/stories/${id}`}>View Story</Link>
+        </button>
       </footer>
     </article>
   );
