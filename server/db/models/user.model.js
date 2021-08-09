@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       avatar: {
         type: DataTypes.STRING,
         defaultValue:
-          "https://cdn2.vectorstock.com/i/thumb-large/59/16/cartoon-animal-head-icon-mouse-face-avatar-vector-7375916.jpg",
+          "https://user-images.githubusercontent.com/69181038/120706223-d3064f80-c486-11eb-95f7-1beeb33cabaf.png",
       },
       email: {
         type: DataTypes.STRING,

@@ -25,9 +25,6 @@ exports.create = (req, res) => {
     username: username,
     email: email,
     password: password,
-    avatar: avatar
-      ? avatar
-      : "https://cdn2.vectorstock.com/i/thumb-large/59/16/cartoon-animal-head-icon-mouse-face-avatar-vector-7375916.jpg",
   };
 
   // // Save User in the database

@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import TimeAgo from "react-timeago";
 export default function StoryArticle(props) {
   const {
+    createdAt,
     id,
     title,
     initial_Content,
@@ -15,14 +16,17 @@ export default function StoryArticle(props) {
       <header>
         <h2>{title}</h2>{" "}
         <div className="story-user-profile">
-          {avatar && <img src={avatar} alt="user avatar" />}
+          {avatar && <img src={avatar} alt="user avatar" className="avatar" />}
           <p>{username}</p>
-        </div>{" "}
+        </div>
       </header>
       <p className="story-content">{initial_Content}</p>
       <footer>
-        {" "}
-        {is_complete ? <span>Complete</span> : <span>In Progress</span>}{" "}
+        <div>
+          <TimeAgo date={createdAt} /> /
+          {is_complete ? <span> Complete</span> : <span> In Progress</span>}
+        </div>
+
         <button>
           <Link to={`/stories/${id}`}>View Story</Link>
         </button>

@@ -142,6 +142,16 @@ button:hover {
   justify-content: space-between;
 }
 
+.story-article header div {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+  margin-right: 0.5em;
+  width: 25px;
+  height: 25px;
+}
+
 .story-content {
   margin-top: 1em;
   padding: 0;
