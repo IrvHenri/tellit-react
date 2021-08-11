@@ -6,7 +6,7 @@ export default function StoryArticle(props) {
     createdAt,
     id,
     title,
-    initial_Content,
+    initial_content,
     user: { avatar, username },
     is_complete,
   } = props;
@@ -20,7 +20,7 @@ export default function StoryArticle(props) {
           <p>{username}</p>
         </div>
       </header>
-      <p className="story-content">{initial_Content}</p>
+      <p className="story-content">{initial_content}</p>
       <footer>
         <div>
           <TimeAgo date={createdAt} /> /

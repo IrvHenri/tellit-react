@@ -15,13 +15,13 @@ app.use(cookieParser());
 const db = require("./db/models");
 
 // // drop the table if it already exists
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
-
-// db.sequelize.sync().then(() => {
+// db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");
 // });
+
+db.sequelize.sync().then(() => {
+  console.log("Drop and re-sync db.");
+});
 app.get("/", (req, res) => {
   res.json({
     message: "🦄🌈✨👋🌎🌍🌏✨🌈🦄",
