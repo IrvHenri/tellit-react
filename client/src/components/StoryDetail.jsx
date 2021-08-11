@@ -25,9 +25,9 @@ export default function StoryDetail({ currentUser }) {
       </div>
     );
   };
-  const acceptedContributionsList = acceptedContributions.map(
-    (contribution) => <p>{contribution.content}</p>
-  );
+  const acceptedContributionsList =
+    acceptedContributions &&
+    acceptedContributions.map((contribution) => <p>{contribution.content}</p>);
 
   const contributionList =
     contributions &&
