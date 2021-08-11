@@ -2,21 +2,19 @@ const jwt = require("jsonwebtoken");
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
-
+const passwordValidator = require("password-validator");
+const schema = new passwordValidator();
+schema.is().min(8).has().uppercase().has().lowercase().has().symbols();
 // Create and Save a new User
 exports.create = (req, res) => {
   // Validate request
 
   const { username, email, password, avatar } = req.body;
 
-  if (
-    !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
-      password
-    )
-  ) {
+  if (!schema.validate(password)) {
     return res.status(400).json({
-      error:
-        "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
+      message:
+        "Password must be atleast 8 characters long with  one uppercase letter, one lowercase letter, one number and one special character.",
     });
   }
 
@@ -34,7 +32,9 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).json({
-        message: err.message || "Some error occurred while creating the User.",
+        message:
+          err.errors[0].message ||
+          "Some error occurred while creating the User.",
       });
     });
 };
@@ -50,7 +50,7 @@ exports.findOne = async (req, res) => {
       },
     }).then(async (response) => {
       if (!response) {
-        res.send("No user found");
+        res.status(404).send("No user found");
       } else {
         if (
           !response.dataValues.password ||
@@ -59,7 +59,7 @@ exports.findOne = async (req, res) => {
             response.dataValues.password
           ))
         ) {
-          res.send("password incorrect");
+          res.status(403).send("Username or password incorrect.");
         } else {
           const token = jwt.sign(
             { _id: response.dataValues.id },

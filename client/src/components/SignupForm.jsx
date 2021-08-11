@@ -48,8 +48,7 @@ export default function SignupForm() {
         history.push("/login");
       })
       .catch((err) => {
-        console.log("SIGNUP ERR:", err);
-        // setError(err);
+        setError(err.response.data.message);
       });
   };
   return (

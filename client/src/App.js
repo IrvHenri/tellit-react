@@ -22,32 +22,30 @@ function App() {
   const { visible, toggle } = useToggle();
   return (
     <div className="App">
-      <>
-        <Router>
-          <Navbar user={user} />
+      <Router>
+        <Navbar user={user} />
 
-          <Tabs />
-          <div className="story-journal">
-            <Switch>
-              <Route exact path="/" component={StoryFeed} />
-              <Route exact path="/signup" component={SignupForm} />
-              <Route exact path="/login">
-                {!user ? <LoginForm /> : <Redirect to="/" />}
-              </Route>
-              <Route
-                path="/stories/:id"
-                component={() => <StoryDetail currentUser={user} />}
-              />
+        <Tabs />
+        <div className="story-journal">
+          <Switch>
+            <Route exact path="/" component={StoryFeed} />
+            <Route exact path="/signup" component={SignupForm} />
+            <Route exact path="/login">
+              {!user ? <LoginForm /> : <Redirect to="/" />}
+            </Route>
+            <Route
+              path="/stories/:id"
+              component={() => <StoryDetail currentUser={user} />}
+            />
 
-              <Route path="/user/stories" component={UserFeed} />
-            </Switch>
-          </div>
+            <Route path="/user/stories" component={UserFeed} />
+          </Switch>
+        </div>
 
-          <Footer />
-        </Router>
-        {visible && <CreateStoryForm onClick={toggle} userId={user.id} />}
-        {user && <CreateStoryBtn onClick={toggle} />}
-      </>
+        <Footer />
+      </Router>
+      {visible && <CreateStoryForm onClick={toggle} userId={user.id} />}
+      {user && <CreateStoryBtn onClick={toggle} />}
     </div>
   );
 }

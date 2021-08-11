@@ -24,7 +24,6 @@ export const AuthProvider = (props) => {
           },
         })
         .then((res) => {
-          console.log("USER DATA:", res.data.user);
           setUser(res.data.user);
         })
         .catch((err) => {
