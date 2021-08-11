@@ -14,7 +14,7 @@ export default function UserFeed() {
     if (user) {
       return loading ? <p>loading...</p> : userStories;
     } else {
-      return <p>Looks like you're not logged in!</p>;
+      return <p>Login to view your stories!</p>;
     }
   };
 

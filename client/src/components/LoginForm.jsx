@@ -5,7 +5,6 @@ export default function LoginForm({ setToken }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setError("");
@@ -20,7 +19,7 @@ export default function LoginForm({ setToken }) {
         const { token, id } = res.data;
         localStorage.setItem("auth-token", token);
         localStorage.setItem("id", id);
-        window.location = "/stories";
+        window.location = "/";
       })
       .catch((err) => {
         let error = err.response.data;

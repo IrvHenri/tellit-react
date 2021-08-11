@@ -7,7 +7,12 @@ import StoryDetail from "./components/StoryDetail";
 import UserFeed from "./components/UserFeed";
 import Footer from "./components/Footer";
 import "./app.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 
 function App() {
@@ -21,21 +26,13 @@ function App() {
           <Tabs />
           <div className="story-journal">
             <Switch>
-              <Route exact path="/signup">
-                <SignupForm />
-              </Route>
+              <Route exact path="/" component={StoryFeed} />
+              <Route exact path="/signup" component={SignupForm} />
               <Route exact path="/login">
-                <LoginForm />
+                {!user ? <LoginForm /> : <Redirect to="/" />}
               </Route>
-              <Route exact path="/stories">
-                <StoryFeed />
-              </Route>
-              <Route path="/stories/:id">
-                <StoryDetail />
-              </Route>
-              <Route path="/user/stories">
-                <UserFeed />
-              </Route>
+              <Route path="/stories/:id" component={StoryDetail} />
+              <Route path="/user/stories" component={UserFeed} />
             </Switch>
           </div>
 

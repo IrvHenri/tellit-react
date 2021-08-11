@@ -55,17 +55,31 @@ button:hover {
   color: aliceblue;
 }
 
-.navbar ul {
+.nav-action-links {
   display: flex;
   justify-content: space-around;
-}
-.navbar ul li {
-  list-style: none;
+  min-width: 150px;
 }
 
-.navbar ul a {
+.nav-action-links a {
+  border-radius: 5px;
+  background: #3c322d;
   text-decoration: none;
-  padding: 0 1em;
+  padding: 0.2em 0.6em;
+  color: aliceblue;
+}
+
+.nav-action-logged-in {
+  display: flex;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-around;
+  background: #3c322d;
+  color: aliceblue;
+  padding: 0.2em 0.6em;
+}
+.nav-action-logged-in button {
+  margin-left: 0.8em;
 }
 
 /* Home Tabs */

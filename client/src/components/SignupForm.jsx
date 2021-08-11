@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 export default function SignupForm() {
@@ -8,6 +9,9 @@ export default function SignupForm() {
     password: "",
   });
   const [error, setError] = useState("");
+
+  const history = useHistory();
+
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -29,7 +33,7 @@ export default function SignupForm() {
       .post("http://localhost:8000/api/signup", newUser)
       .then(() => {
         setInputs({ username: "", email: "", password: "" });
-        window.location = "/login";
+        history.push("/login");
       })
       .catch((err) => {
         console.log(err);
