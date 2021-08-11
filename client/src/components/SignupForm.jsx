@@ -7,6 +7,7 @@ export default function SignupForm() {
     username: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
   const [error, setError] = useState("");
 
@@ -22,7 +23,13 @@ export default function SignupForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-    const { username, email, password } = inputs;
+    const { username, email, password, confirmPassword } = inputs;
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
     const newUser = {
       username,
       email,
@@ -32,16 +39,23 @@ export default function SignupForm() {
     axios
       .post("http://localhost:8000/api/signup", newUser)
       .then(() => {
-        setInputs({ username: "", email: "", password: "" });
+        setInputs({
+          username: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
         history.push("/login");
       })
       .catch((err) => {
-        console.log(err);
+        console.log("SIGNUP ERR:", err);
         // setError(err);
       });
   };
   return (
     <form className="form signup-form">
+      <h1>Sign-up</h1>
+
       <input
         type="text"
         placeholder="Enter username"
@@ -49,6 +63,7 @@ export default function SignupForm() {
         value={inputs.username}
         onChange={handleChange}
       />
+
       <input
         type="email"
         placeholder="Enter Email"
@@ -56,13 +71,22 @@ export default function SignupForm() {
         value={inputs.email}
         onChange={handleChange}
       />
+
       <input
         name="password"
         type="password"
         value={inputs.password}
         onChange={handleChange}
-        placeholder="Password must be at least 10 and 12 characters including at least 1 uppercase, 1 lowercase, one number and one special character."
+        placeholder="Enter Password"
       />
+      <input
+        name="confirmPassword"
+        type="password"
+        value={inputs.confirmPassword}
+        onChange={handleChange}
+        placeholder="Confirm Password"
+      />
+
       <button onClick={handleSubmit} type="submit">
         Signup
       </button>

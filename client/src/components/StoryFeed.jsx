@@ -9,11 +9,11 @@ export default function StoryFeed() {
     stories &&
     stories.map((story) => <StoryArticle key={story.id} {...story} />);
   return (
-    <div>
+    <div className="story-feed">
       {loading ? (
         <CircularProgress />
       ) : stories.length > 0 ? (
-        <div className="story-feed">{storyList}</div>
+        { storyList }
       ) : (
         <p>No Stories! Check Back Later!</p>
       )}

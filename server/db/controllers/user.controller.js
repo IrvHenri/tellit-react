@@ -15,7 +15,7 @@ exports.create = (req, res) => {
     )
   ) {
     return res.status(400).json({
-      Message:
+      error:
         "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
     });
   }

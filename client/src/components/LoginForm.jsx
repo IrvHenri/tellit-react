@@ -27,27 +27,26 @@ export default function LoginForm({ setToken }) {
       });
   };
   return (
-    <div className="form login-form">
-      <h1>Please Log In</h1>
-      <form>
-        <label>
-          <p>Username</p>
-          <input type="text" onChange={(e) => setUserName(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <div>
-          <button type="submit" onClick={handleSubmit}>
-            Submit
-          </button>
-        </div>
-        {error && <p>{error}</p>}
-      </form>
-    </div>
+    <form className="form login-form">
+      <h1>Log In</h1>
+      <input
+        type="text"
+        onChange={(e) => setUserName(e.target.value)}
+        placeholder="Username"
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
+
+      <div>
+        <button type="submit" onClick={handleSubmit}>
+          Log in
+        </button>
+      </div>
+      {error && <p>{error}</p>}
+    </form>
   );
 }
