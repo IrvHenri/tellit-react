@@ -11,7 +11,7 @@ module.exports = (app) => {
 
   //Gets all accepted contributions for story, and ordered by createdAt
   router.get(
-    "/:story_id/acceptedContributions",
+    "/:storyId/acceptedContributions",
     stories.findAcceptedContributions
   );
 

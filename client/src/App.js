@@ -34,7 +34,11 @@ function App() {
               <Route exact path="/login">
                 {!user ? <LoginForm /> : <Redirect to="/" />}
               </Route>
-              <Route path="/stories/:id" component={StoryDetail} />
+              <Route
+                path="/stories/:id"
+                component={() => <StoryDetail currentUser={user} />}
+              />
+
               <Route path="/user/stories" component={UserFeed} />
             </Switch>
           </div>

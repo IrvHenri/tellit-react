@@ -6,7 +6,6 @@ const CreateStoryForm = ({ onClick, userId }) => {
   const [title, setTitle] = useState("");
   const [initialContent, setInitialContent] = useState("");
   const [error, setError] = useState("");
-  console.log("title", title, "initial:", initialContent);
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");

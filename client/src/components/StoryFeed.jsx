@@ -4,14 +4,21 @@ import useStories from "../hooks/useStories";
 import { CircularProgress } from "@material-ui/core";
 export default function StoryFeed() {
   const [stories, loading] = useStories();
-  console.log(stories);
+
   let storyList =
     stories &&
-    stories.map((story) => <StoryArticle key={story.id} {...story} />);
+    stories.map((story) => (
+      <StoryArticle
+        key={story.id}
+        {...story}
+        authorView={false}
+        detailView={false}
+      />
+    ));
   return (
     <div className="story-feed">
       {loading ? (
-        <CircularProgress />
+        <CircularProgress size={100} />
       ) : stories.length > 0 ? (
         storyList
       ) : (

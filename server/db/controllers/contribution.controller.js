@@ -18,7 +18,7 @@ exports.countUpvotes = async (req, res) => {
 
 exports.upvote = async (req, res) => {
   const { userId } = req.body;
-  console.log("USER ID-------------->", userId);
+
   const { contribution_id } = req.params;
   try {
     let checkExistingVote = await Upvote.findOne({
@@ -82,7 +82,9 @@ exports.accept = async (req, res) => {
             const updatedContributions = contributions.map((contribution) => {
               if (contribution.dataValues.id === Number(contribution_id)) {
                 return contribution.update(accepted);
-              } else {
+              } else if (
+                contribution.dataValues.is_accepted === "not reviewed"
+              ) {
                 return contribution.update(rejected);
               }
             });

@@ -62,20 +62,6 @@ exports.findUserStories = (req, res) => {
     console.log(`Found ${stories.length} stories.`);
     res.json({ stories });
   });
-  // const { id } = req.userId;
-
-  // Story.findAll({
-  //   where: { userId: id },
-  //   include: [
-  //     {
-  //       model: User,
-  //       attributes: ["avatar", "username"],
-  //     },
-  //   ],
-  // }).then((stories) => {
-  //   console.log(`Found ${stories.length} stories.`);
-  //   res.json({ stories });
-  // });
 };
 
 // Create and Save a new Story

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Button from "./Button";
-export default function ContributionForm({ storyId, userId }) {
+export default function ContributionForm({ storyId, loggedInUserId }) {
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
   const handleChange = (event) => {
@@ -15,7 +15,7 @@ export default function ContributionForm({ storyId, userId }) {
     const contribution = {
       content,
       storyId,
-      userId,
+      userId: loggedInUserId,
     };
     axios
       .post(

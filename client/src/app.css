@@ -164,6 +164,10 @@ button:hover {
   padding-top: 3em;
 }
 
+.MuiCircularProgress-root {
+  margin-top: 13rem;
+}
+
 /* Story Articles */
 .story-article {
   background: #f5f5f5;
@@ -224,6 +228,10 @@ button:hover {
 .story-detail-sidebar {
   min-width: 300px;
   width: 35%;
+}
+
+.story-detail-complete {
+  justify-content: center;
 }
 
 .contribution-widget {
