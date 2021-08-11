@@ -45,7 +45,7 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1em;
+  padding: 0 4em;
   background: #065c84;
   height: 120px;
 }
@@ -310,6 +310,59 @@ button:hover {
   flex-direction: column;
   align-items: center;
   background: #9ad2a9;
+}
+
+.create-story-modal {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  right: 20%;
+}
+
+.create-story-modal textarea {
+  resize: none;
+}
+
+.create-story-modal textarea,
+.create-story-modal input {
+  border: 0;
+  width: 75%;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  border: 0;
+  border-radius: 8px;
+  font-size: 1.2em;
+  font-family: inherit;
+}
+
+.create-story-modal button {
+  padding: 1em 1.3em;
+  font-size: 1em;
+}
+
+.create-story-btn {
+  position: absolute;
+  bottom: 60px;
+  right: 60px;
+  width: fit-content;
+  background: #017cac;
+  border-radius: 50%;
+  padding: 1.2em;
+}
+
+.close-story-modal-btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 15px;
+  top: 15px;
+  background: 0;
+}
+
+.create-story-btn svg {
+  color: #f0f8ff;
+  font-size: 3.5em;
 }
 
 .footer {

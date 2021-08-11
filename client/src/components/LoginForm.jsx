@@ -33,12 +33,14 @@ export default function LoginForm({ setToken }) {
         type="text"
         onChange={(e) => setUserName(e.target.value)}
         placeholder="Username"
+        required
       />
 
       <input
         type="password"
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
+        required
       />
 
       <div>

@@ -62,6 +62,7 @@ export default function SignupForm() {
         name="username"
         value={inputs.username}
         onChange={handleChange}
+        required
       />
 
       <input
@@ -70,6 +71,7 @@ export default function SignupForm() {
         name="email"
         value={inputs.email}
         onChange={handleChange}
+        required
       />
 
       <input
@@ -78,6 +80,7 @@ export default function SignupForm() {
         value={inputs.password}
         onChange={handleChange}
         placeholder="Enter Password"
+        required
       />
       <input
         name="confirmPassword"
@@ -85,6 +88,7 @@ export default function SignupForm() {
         value={inputs.confirmPassword}
         onChange={handleChange}
         placeholder="Confirm Password"
+        required
       />
 
       <button onClick={handleSubmit} type="submit">

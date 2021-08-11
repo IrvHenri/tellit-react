@@ -8,9 +8,8 @@ export default function useStories() {
     axios
       .get("http://localhost:8000/api/stories")
       .then((result) => {
-        
-        const {stories} = result.data
-        setStories(prev => [...prev, ...stories]);
+        const { stories } = result.data;
+        setStories((prev) => [...prev, ...stories]);
         setLoading(false);
       })
       .catch((err) => console.log("Error", err));

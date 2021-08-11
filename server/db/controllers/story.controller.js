@@ -80,12 +80,12 @@ exports.findUserStories = (req, res) => {
 
 // Create and Save a new Story
 exports.createStory = (req, res) => {
-  const { title, initial_Content, userId } = req.body;
-
+  const { title, initial_content, userId } = req.body;
+  console.log("FORM DATA --------->>>>", title, initial_content, userId);
   // Create a Story
   const story = {
     title,
-    initial_Content,
+    initial_content,
     userId,
   };
 

@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      initial_Content: {
+      initial_content: {
         type: DataTypes.STRING,
         allowNull: false,
       },
