@@ -93,7 +93,7 @@ export default function SignupForm() {
       <button onClick={handleSubmit} type="submit">
         Signup
       </button>
-      <p>{error && error}</p>
+      {error && <p>{error} </p>}
     </form>
   );
 }

@@ -22,7 +22,8 @@ export default function Navbar({ user }) {
         </div>
       ) : user ? (
         <div className="nav-action-logged-in">
-          <p>Welcome back {user.username} !</p>
+          <img src={user.avatar} alt={user.username} className="avatar" />
+          <p>{user.username}</p>
           <button onClick={logOut}> Logout </button>
         </div>
       ) : null}

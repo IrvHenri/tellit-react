@@ -1,4 +1,8 @@
 /* GLOBAL */
+* {
+  margin: 0;
+  padding: 0;
+}
 
 html {
   overflow: scroll;
@@ -28,11 +32,12 @@ body {
 }
 
 button {
-  padding: 0.3em 0.7em;
+  padding: 0.5em 0.9em;
   border: 0;
   border-radius: 5px;
   background-color: #35d461;
   transition: 200ms ease-in;
+  font-weight: bold;
 }
 
 button:hover {
@@ -76,7 +81,7 @@ button:hover {
   justify-content: space-around;
   background: #3c322d;
   color: aliceblue;
-  padding: 0.2em 0.6em;
+  padding: 0.6em 0.6em;
 }
 .nav-action-logged-in button {
   margin-left: 0.8em;
@@ -88,6 +93,7 @@ button:hover {
   flex-direction: column;
   align-items: center;
   width: 50%;
+  max-width: 400px;
   margin: 0 auto;
   margin-top: 4em;
   background: aliceblue;
@@ -108,7 +114,23 @@ button:hover {
 }
 
 /* SIGN UP FORM */
+.signup-form p {
+  margin-top: 2em;
+  color: #fff;
+  background: red;
+  padding: 0.3em 0.9em;
+  border-radius: 5px;
+}
 
+/* LOG IN FORM */
+
+.login-form h1 {
+  margin-bottom: 1em;
+}
+
+.login-form button {
+  margin-top: 1em;
+}
 /* Home Tabs */
 
 .home-tabs {
@@ -176,7 +198,7 @@ button:hover {
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
   width: 85%;
-  min-width: 320px;
+  min-width: 250px;
   max-width: 550px;
   border-radius: 5px;
   margin-bottom: 2em;
@@ -225,6 +247,12 @@ button:hover {
   padding: 2em;
   transition: 200ms ease-in;
 }
+
+.story-detail-page .MuiCircularProgress-root {
+  margin: 0 auto;
+  margin-top: 14rem;
+}
+
 .story-detail-sidebar {
   min-width: 300px;
   width: 35%;
@@ -254,17 +282,17 @@ button:hover {
   resize: none;
   padding: 0.5em;
   border-radius: 10px;
+  height: 75px;
   outline: 0;
   font: inherit;
 }
 
 .contribution-widget button {
   min-width: 75px;
-  width: 30%;
-  margin-top: 0.5em;
+  margin-top: 0.7em;
   margin-right: auto;
-  font-weight: bold;
-  padding: 0.1em 0.4em;
+
+  padding: 0.3em 0.9em;
 }
 
 .contribution-article {
@@ -306,6 +334,28 @@ button:hover {
   align-items: center;
   justify-content: space-between;
 }
+.contribution-action-container {
+  display: flex;
+}
+.contribution-action-btn {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.contribution-action-btn svg {
+  margin-left: 5px;
+}
+
+.upvote-error {
+  background: red;
+  color: #fff;
+  width: fit-content;
+  border-radius: 5px;
+  margin-top: 1em;
+  padding: 0.6em 0.9em !important;
+  font-size: 12px;
+}
 
 /* User Feed */
 .user-feed {
@@ -345,7 +395,6 @@ button:hover {
 }
 
 .create-story-modal button {
-  padding: 1em 1.3em;
   font-size: 1em;
 }
 
@@ -378,4 +427,53 @@ button:hover {
   display: flex;
   justify-content: center;
   justify-self: flex-start;
+}
+
+@media screen and (max-width: 1000px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 1em;
+  }
+  .home-tabs {
+    width: 100%;
+  }
+  .home-tabs a {
+    font-size: 1.5em;
+  }
+
+  .story-journal {
+    width: 90%;
+  }
+
+  .story-article {
+    width: 80%;
+    max-width: 450px;
+  }
+
+  .story-article h2 {
+    font-size: 1.3em;
+  }
+
+  .story-article footer * {
+    font-size: 12px;
+  }
+
+  .story-article button {
+    width: 40%;
+  }
+
+  .create-story-btn {
+    right: 40px;
+    opacity: 50%;
+  }
+
+  .story-detail-page {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .story-detail-page .story-article footer div {
+    width: 40%;
+  }
 }

@@ -25,9 +25,7 @@ exports.upvote = async (req, res) => {
       where: { userId: userId, contributionId: contribution_id },
     });
     if (checkExistingVote) {
-      return res
-        .status(400)
-        .json({ error: "User has already up-voted this contribution!" });
+      return res.status(400).json({ error: "Maximum 1 vote per contribution" });
     } else {
       const upvote = {
         userId: userId,

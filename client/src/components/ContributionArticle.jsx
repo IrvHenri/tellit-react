@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import TimeAgo from "react-timeago";
 import useUpvote from "../hooks/useUpvote";
@@ -15,6 +15,7 @@ export default function ContributionArticle(props) {
     content,
     user: { username, avatar },
   } = props;
+  const [error, setError] = useState("");
   const { upVote, setUpvote } = useUpvote(id);
 
   const onClick = () => {
@@ -30,7 +31,7 @@ export default function ContributionArticle(props) {
         setUpvote((prev) => prev + 1);
         console.log(res);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setError(err.response.data.error));
   };
   const acceptContribution = () => {
     const payload = { user_id: authorId };
@@ -77,6 +78,7 @@ export default function ContributionArticle(props) {
           </button>
         </div>
       </footer>
+      {error && <p className="upvote-error">{error}</p>}
     </article>
   );
 }
