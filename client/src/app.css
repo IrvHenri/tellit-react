@@ -2,6 +2,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -15,7 +16,6 @@ html {
 }
 
 body {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
   overflow-y: hidden;
@@ -173,7 +173,6 @@ button:hover {
   width: 65%;
   margin: 0 auto;
   border-radius: 15px;
-  overflow: scroll;
   margin-bottom: 2em;
   background: #72d4f5;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 15px;
@@ -183,7 +182,13 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 3em;
+  height: 100%;
+  overflow: scroll;
+}
+
+.story-feed .story-article:first-of-type,
+.user-feed .story-article:first-of-type {
+  margin-top: 3em;
 }
 
 .MuiCircularProgress-root {
@@ -359,15 +364,12 @@ button:hover {
 
 /* User Feed */
 .user-feed {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
   background: #9ad2a9;
+  height: 100%;
+  overflow: scroll;
 }
 
 .create-story-modal {
