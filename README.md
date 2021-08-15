@@ -4,12 +4,15 @@ Tellit! is a story creator app that is a cross between twitter and reddit. This 
 
 ## Features
 
- - users can start a story
+ - users can sign up and create an account
+ - users can login
+ - users can start a story 
  - users can add contributions to an existing story
  - users can upvote a contribution
  - users can see upvotes of a contribution
  - the creator of a story can accept a contribution; this merges it to the rest of the story
  - the creator of a story can mark the story complete
+ - Protected Routes via jsonwebtoken
 
 ### Preview 
 
